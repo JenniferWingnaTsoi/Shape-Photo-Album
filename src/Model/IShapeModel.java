@@ -27,12 +27,14 @@ public interface IShapeModel {
    */
   void addShape(IShape newShape);
 
+
   /**
    * Removes a shape from the photo album.
    *
    * @param name the name of the shape to be removed
    */
   void removeShape(String name);
+
 
   /**
    * Changes the size of a shape in the photo album.
@@ -42,6 +44,7 @@ public interface IShapeModel {
    * @param size2 the new size of the second dimension of the shape
    */
   void changeSize(String name, double size1, double size2);
+
 
   /**
    * Changes the color of a shape in the photo album.
@@ -53,6 +56,7 @@ public interface IShapeModel {
    */
   void changeColor(String name, double red, double green, double blue);
 
+
   /**
    * Moves a shape to a new position in the photo album.
    *
@@ -62,12 +66,19 @@ public interface IShapeModel {
    */
   void move(String name, double xcoor, double ycoor);
 
+  /**
+   * Return a list of snapshot of the ShapeModel.
+   *
+   * @return a list of Snapshot
+   */
   List<Snapshot> getSnapshotList();
+
 
   /**
    * Resets the photo album to its initial state with no shapes.
    */
   void reset();
+
 
   /**
    * Takes a snapshot of the current state of the photo album with a description.
@@ -75,6 +86,7 @@ public interface IShapeModel {
    * @param description the description of the snapshot
    */
   void takeSnapshot(String description);
+
 
   /**
    * Returns a string representation of the list of all snapshots taken in the photo album.

@@ -4,21 +4,21 @@ import Controller.IModelController;
 import Model.IShapeModel;
 
 /**
- * This class reads script from a file and executes the commands.
+ * The ReadFile class reads commands from a file and uses them to create an IShapeModel.
  */
 public class ReadFile {
 
   /**
-   * Parses an animation script and builds a model of the animation.
+   * Reads commands from the input and executes them to create an IShapeModel.
    *
-   * @param input a Readable object that provides access to the file
-   * @param albumController  a controller that is used to construct the model
-   * @return the model of the animation
+   * @param input           the input to read the commands from
+   * @param albumController the controller to execute the commands on
+   * @return                an IShapeModel representing the state of the shapes after executing the commands
    */
   public static IShapeModel readFile(Readable input, IModelController albumController) {
     try (Scanner scanner = new Scanner(input)) {
       while (scanner.hasNextLine()) {
-        String line = scanner.nextLine();
+        String line = scanner.nextLine().trim();
         if (line.isEmpty() || line.startsWith("#")) {
           continue;
         }
@@ -40,6 +40,13 @@ public class ReadFile {
     return albumController.create(); // create an IShapeModel to implement command
   }
 
+
+  /**
+   * Creates a new shape in the {@link IShapeModel} using the given information.
+   *
+   * @param commandTokens the tokens containing the shape information
+   * @param albumController the {@link IModelController} to use to modify the {@link IShapeModel}
+   */
   private static void ShapeCommand(String[] commandTokens, IModelController albumController) {
     if(commandTokens.length != 10){
       throw new IllegalArgumentException("Shape info missing.\n");
@@ -57,6 +64,13 @@ public class ReadFile {
 
   }
 
+
+  /**
+   * Moves the shape with the given name to the specified position.
+   *
+   * @param commandTokens the tokens containing the move information
+   * @param albumController the {@link IModelController} to use to modify the {@link IShapeModel}
+   */
   private static void MoveCommand(String[] commandTokens, IModelController albumController) {
     if(commandTokens.length!=4){
       throw new IllegalArgumentException("Shape info missing\n");
@@ -68,6 +82,17 @@ public class ReadFile {
 
   }
 
+  /**
+   * The ResizeCommand method receives an array of tokens representing the command
+   * and an IModelController object
+   * and calls the IModelController's changeSize method to resize a shape
+   * with the specified name to the specified sizes.
+   * @param commandTokens an array of strings representing the command tokens.
+   * @param albumController an IModelController object that the method will use
+   *                       to call the changeSize method.
+   * @throws IllegalArgumentException if the commandTokens array does not contain exactly 4 elements.
+
+   */
   private static void ResizeCommand(String[] commandTokens, IModelController albumController) {
     if(commandTokens.length!=4){
       throw new IllegalArgumentException("Missing shape info\n");
@@ -78,7 +103,12 @@ public class ReadFile {
     albumController.changeSize(name,size1,size2);
   }
 
-
+  /**
+   * This method is used to execute the Remove command, which removes a shape from the album
+   * @param commandTokens an array of Strings containing the command and its arguments
+   * @param albumController the album controller that performs the action
+   * @throws IllegalArgumentException if there are not enough arguments provided for the command
+   */
   private static void RemoveCommand(String[] commandTokens, IModelController albumController) {
     if(commandTokens.length!=2){
       throw new IllegalArgumentException("Missing shape info\n");
@@ -86,6 +116,12 @@ public class ReadFile {
     albumController.remove(commandTokens[1]);
   }
 
+  /**
+   * This method is used to execute the Color command, which changes the color of a shape in the album
+   * @param commandTokens an array of Strings containing the command and its arguments
+   * @param albumController the album controller that performs the action
+   * @throws IllegalArgumentException if there are not enough arguments provided for the command
+   */
   private static void ColorCommand(String[] commandTokens, IModelController albumController) {
     if(commandTokens.length !=5){
       throw new IllegalArgumentException("Missing shape info");
@@ -97,6 +133,11 @@ public class ReadFile {
     albumController.changecolor(name,red,green,blue);
   }
 
+  /**
+   * This method is used to execute the Snapshot command, which takes a snapshot of the current album
+   * @param commandTokens an array of Strings containing the command and its arguments
+   * @param albumController the album controller that performs the action
+   */
   private static void SnapshotCommand(String[] commandTokens, IModelController albumController) {
     StringBuilder description = new StringBuilder();
     // if it is equal to 1, description is empty indx 1 is the command

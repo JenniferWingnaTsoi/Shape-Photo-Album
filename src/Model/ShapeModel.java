@@ -1,18 +1,14 @@
 package Model;
 
-import java.text.SimpleDateFormat;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import Shape.IShape;
-import Shape.Oval;
-import Shape.Rectangle;
 
 
 /**
@@ -89,12 +85,12 @@ public class ShapeModel implements IShapeModel {
             DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSSS");
     String IDString = ID.format(EastIDFormatter);
 
-    Date timeStamp = new Date();
-    SimpleDateFormat Formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-
 
     // Create a copy of the current shapes
-    List<IShape> shapes = new ArrayList<>(shapeMap.values());
+    List<IShape> shapes = new ArrayList<>();
+    for(IShape shape:shapeMap.values()){
+      shapes.add(shape.copy());
+    }
     snapshotList.add(new Snapshot(IDString,description,shapes));
 
     /**

@@ -3,8 +3,8 @@ package Shape;
 /**
  * This is the concrete class of oval that implement IShape interface.
  */
-public class Oval implements IShape {
-  private String Name;
+public class Oval implements IShape,Cloneable {
+  private final String Name;
   private double xCoor;
   private double yCoor;
   private double size1;
@@ -29,7 +29,7 @@ public class Oval implements IShape {
    */
   public Oval(String Name, double xCoor, double yCoor, double size1, double size2, double colorR,
               double colorG, double colorB) {
-    if (!isValidRGB(colorR, colorG, colorB)) {
+    if (isValidRGB(colorR, colorG, colorB)) {
       throw new IllegalArgumentException("Invalid RGB value.");
     }
     if (Name == null || Name.isEmpty()) {
@@ -123,7 +123,7 @@ public class Oval implements IShape {
 
   @Override
   public boolean isValidRGB(double r, double g, double b) {
-    return (r >= MIN && r <= MAX) && (g >= MIN && g <= MAX) && (b >= MIN && b <= MAX);
+    return (!(r >= MIN) || !(r <= MAX)) || (!(g >= MIN) || !(g <= MAX)) || (!(b >= MIN) || !(b <= MAX));
   }
 
   /**
@@ -138,6 +138,15 @@ public class Oval implements IShape {
             + "Center: (" + xCoor + "," + yCoor + "), "
             + "X radius: " + size1 + ", Y radius: " + size2
             + ", Color: (" + colorR + "," + colorG + "," + colorB + ")\n";
+  }
+
+  @Override
+  public Oval copy() {
+    try {
+      return (Oval) super.clone();
+    } catch (CloneNotSupportedException e) {
+      throw new AssertionError("Clone fail");
+    }
   }
 
   @Override

@@ -10,21 +10,38 @@ import Model.IShapeModel;
 import Model.Snapshot;
 import Shape.IShape;
 
-public class Web implements IView {
 
+/**
+ * The Web class is responsible for displaying the snapshots of shapes and their descriptions
+ * in a web interface. It is controller by the WebController.
+ * It implements the IWebView interface and extends the JFrame class.
+ */
+public class Web implements IWebView{
+
+  // constants for string literals to read easily
   private static final String HTML_HEADER = "<!DOCTYPE html>\n<html>\n<body>\n";
   private static final String HTML_FOOTER = "</body>\n</html>";
-  private static final String SVG_HEADER = "<svg width=\"%d\" height=\"%d\" version=\"1.1\" style=\"border: solid 2px red; background-color:rgb(173,216,230)\" xmlns=\"http://www.w3.org/2000/svg\"><g>\n";
+  private static final String SVG_HEADER = "<svg width=\"%d\" height=\"%d\" version=\"1.1\"" +
+          " style=\"border: solid 2px red; background-color:rgb(173,216,230)\"" +
+          " xmlns=\"http://www.w3.org/2000/svg\"><g>\n";
   private static final String SVG_FOOTER = "</g></svg>\n<p></p>\n";
-  private static final String RECTANGLE_TEMPLATE = "<rect id=\"%s\" x=\"%.2f\" y=\"%.2f\" width=\"%.2f\" height=\"%.2f\" fill=\"rgb(%f,%f,%f)\" visibility=\"visible\"/>\n";
-  private static final String OVAL_TEMPLATE = "<ellipse id=\"%s\" cx=\"%.2f\" cy=\"%.2f\" rx=\"%.2f\" ry=\"%.2f\" fill=\"rgb(%f,%f,%f)\" visibility=\"visible\"/>\n";
-
-
+  private static final String RECTANGLE_TEMPLATE = "<rect id=\"%s\" x=\"%.2f\" y=\"%.2f\"" +
+          " width=\"%.2f\" height=\"%.2f\" fill=\"rgb(%f,%f,%f)\" visibility=\"visible\"/>\n";
+  private static final String OVAL_TEMPLATE = "<ellipse id=\"%s\" cx=\"%.2f\" cy=\"%.2f\"" +
+          " rx=\"%.2f\" ry=\"%.2f\" fill=\"rgb(%f,%f,%f)\" visibility=\"visible\"/>\n";
   private final int wid;
   private final int height;
   private final List<Snapshot> snapshotList;
   private final StringBuilder result;
 
+  /**
+   * Constructs a Web object with the specified shape model and dimensions.
+   *
+   * @param model the shape model that contains the implementation of photo album
+   *             and snapshots to be displayed
+   * @param wid the width of the graphical interface
+   * @param height the height of the graphical interface
+   */
   public Web(int height,int wid,IShapeModel model){
     this.height = height;
     this.wid = wid;
@@ -32,33 +49,40 @@ public class Web implements IView {
     this.result = new StringBuilder();
   }
 
-  /**
-   * Edit to create an HTML file for display.
-   */
+
   @Override
-  public void display() {
+  public void merge() {
     result.append(HTML_HEADER);
     for(Snapshot each:snapshotList){
-      try{
-        paintSVG(each);
-      } catch (IOException e){
-        e.printStackTrace();
-      }
+        generateSVG(each); // generate a photo in form of web view for each snapshot
     }
     result.append(HTML_FOOTER);
   }
 
-  public void paintSVG(Snapshot snapshot) throws IOException{
+
+  @Override
+  public void writeFile(String path) throws IOException {
+    try(BufferedWriter writer = Files.newBufferedWriter(Paths.get(path))){
+      writer.write(result.toString());
+    } catch (IOException e){
+      e.printStackTrace();
+    }
+  }
+
+  @Override
+  public String getResult() {
+    return result.toString();
+  }
+
+  @Override
+  public void generateSVG(Snapshot snapshot){
     if(snapshot == null){
       return;
     }
     result.append(String.format(SVG_HEADER, wid, height));
-    //System.out.println("Signal1\n");
     // Get all the instance variables of each snapshot from the list
     String description = snapshot.getDescription();
-    //System.out.println("Signal2\n");
     String ID = snapshot.getID();
-    //System.out.println("Signal3\n");
     List<IShape> shapeList = snapshot.getShapeList();
 
     //Loop through all the shape to draw the shape
@@ -85,30 +109,12 @@ public class Web implements IView {
     }
 
     // Add snapshot ID
-    result.append("text x=\"10\" y=\"40\" font-weight=\"bold\" font-size=\"30\">");
+    result.append("<text x=\"10\" y=\"40\" font-weight=\"bold\" font-size=\"30\">");
     result.append(ID).append("</text>\n");
 
     // Add description
-    result.append("<text x=\"10\" y=\"40\" font-size=\"20\">");
+    result.append("<text x=\"10\" y=\"65\" font-size=\"20\">");
     result.append("Description: ").append(description).append("</text>\n");
     result.append(SVG_FOOTER);
-  }
-
-  /**
-   * Saves the current SVG drawing to a file at the given file path.
-   *
-   * @param path the file path where the SVG file will be saved
-   * @throws IOException if there is an error while writing to the file
-   */
-  public void writeFile(String path) throws IOException {
-    try(BufferedWriter writer = Files.newBufferedWriter(Paths.get(path))){
-      writer.write(this.getResult());
-    } catch (IOException e){
-      e.printStackTrace();
-    }
-  }
-
-  public String getResult() {
-    return result.toString();
   }
 }

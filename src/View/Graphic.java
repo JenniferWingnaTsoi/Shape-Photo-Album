@@ -8,20 +8,31 @@ import javax.swing.*;
 import Model.IShapeModel;
 import Model.Snapshot;
 
-public class Graphic extends JFrame implements IView {
+/**
+ * The Graphic class is responsible for displaying the snapshots of shapes and their descriptions
+ * in a graphical interface. It is controller by the graphicController.
+ * It implements the IGraphicView interface and extends the JFrame class.
+ */
+public class Graphic extends JFrame implements IGraphicView {
 
-  private JPanel menu;
-  private JPanel head;
   private JLabel label;
-  private List<Snapshot> snapshotList;
+  private final List<Snapshot> snapshotList;
   private List<String> SnapIDList;
   private Canvas canvas; // subclass of JPanel
   private int idx = 0;
-  private int wid;
-  private int height;
+  private final int wid;
+  private final int height;
   private static final int BAR_HEIGHT = 200;
 
 
+  /**
+   * Constructs a Graphic object with the specified shape model and dimensions.
+   *
+   * @param model the shape model that contains the implementation of photo album
+   *             and snapshots to be displayed
+   * @param wid the width of the graphical interface
+   * @param height the height of the graphical interface
+   */
   public Graphic(IShapeModel model, int wid, int height){
     this.wid = wid;
     this.height = height;
@@ -36,16 +47,17 @@ public class Graphic extends JFrame implements IView {
   }
 
 
-  private void setupIDList(){
+  @Override
+  public void setupIDList(){
     this.SnapIDList = new ArrayList<>();
     for(Snapshot each:snapshotList) {
       SnapIDList.add(each.getID());
     }
   }
 
-  private JButton createPrevButton(){
+  @Override
+  public JButton createPrevButton(){
     JButton prev = new JButton("<< Prev <<");
-    prev.setActionCommand("prev");
     prev.addActionListener(e-> {
       if(idx==0){
         JOptionPane.showMessageDialog(new JFrame(),"No previous available.\n");
@@ -62,12 +74,12 @@ public class Graphic extends JFrame implements IView {
     return prev;
   }
 
-  private JButton createNextButton(){
+  @Override
+  public JButton createNextButton(){
     int size = snapshotList.size();
     int lastSnap = size -1;
 
     JButton Next = new JButton(">> Next >>");
-    Next.setActionCommand("next");
     Next.addActionListener(e -> {
       // if the index is now reaching the end of snapshot, show a message
       if (idx == lastSnap) {
@@ -83,9 +95,9 @@ public class Graphic extends JFrame implements IView {
     return Next;
   }
 
-  private JButton selectButton(){
+  @Override
+  public JButton selectButton(){
     JButton select = new JButton("^^ Select ^^");
-    select.setActionCommand("select");
     select.addActionListener(e -> {
       // provide options for user to choose
       String s = (String) JOptionPane.showInputDialog(null,
@@ -102,67 +114,64 @@ public class Graphic extends JFrame implements IView {
 
   }
 
-  private JButton quitButton(){
+
+  @Override
+  public JButton quitButton(){
     JButton quit = new JButton("XX Quit XX");
-    quit.setActionCommand("quit");
     // 0 mean end of system
     quit.addActionListener(e->System.exit(0));
     return quit;
   }
 
-
+  @Override
   public void setupMenu(){
     JButton prev = createPrevButton();
     JButton next = createNextButton();
     JButton select = selectButton();
     JButton quit = quitButton();
 
-    this.menu = new JPanel(new FlowLayout());
-    this.menu.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-    this.menu.setBackground(Color.ORANGE);
+    JPanel menu = new JPanel(new FlowLayout());
+    menu.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+    menu.setBackground(Color.ORANGE);
+
     // Add button(Component) to the menu
-    this.menu.add(prev);
-    this.menu.add(next);
-    this.menu.add(select);
-    this.menu.add(quit);
+    menu.add(prev);
+    menu.add(next);
+    menu.add(select);
+    menu.add(quit);
+
     // add manu bar to the graphic at the bottom of the screen
     this.add(menu,BorderLayout.AFTER_LAST_LINE);
   }
 
-  private void setUpHead(){
+
+  @Override
+  public void setUpHead(){
     // make sure the bar will not flow freely
-    this.head = new JPanel(new BorderLayout());
-    this.head.setBackground(Color.PINK);
+    JPanel head = new JPanel(new BorderLayout());
+    head.setBackground(Color.PINK);
+
     // the head bar contains the ID and description label for each snapshot
     this.label = new JLabel("<html><body>" + snapshotList.get(idx).getID() + "<br/>" +
             snapshotList.get(idx).getDescription() + "<body></html>");
-    // make sure the label is at the top of head
-    this.head.add(label,BorderLayout.NORTH);
-    // put add at the top of the screen
+
+    // add label to the head bar
+    head.add(label);
+
+    // make sure the head bar is added at the top of the screen
     this.add(head,BorderLayout.NORTH);
   }
 
-  private void setUpCanvas(){
+  @Override
+  public void setUpCanvas(){
     canvas = new Canvas();
+
     // Default snapshot will be the first snapshot
     canvas.drawShape(snapshotList.get(0).getShapeList());
+
     //set the size of the drawing canvas
     Dimension size = new Dimension(wid,height-BAR_HEIGHT);
     this.setPreferredSize(size);
     this.add(canvas,BorderLayout.CENTER);
   }
-
-
-  @Override
-  public void display() {
-    try{
-      // properly resize all the components before displayed
-      this.setVisible(true);
-    } catch (Exception e){
-      e.printStackTrace();
-    }
-  }
-
-
-
 }

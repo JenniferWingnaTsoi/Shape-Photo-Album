@@ -3,8 +3,8 @@ package Shape;
 /**
  * Concrete class of rectangle that implement IShape interface.
  */
-public class Rectangle implements IShape {
-  private String Name;
+public class Rectangle implements IShape, Cloneable {
+  private final String Name;
   private double xCoor;
   private double yCoor;
   private double size1;
@@ -29,7 +29,7 @@ public class Rectangle implements IShape {
    */
   public Rectangle(String Name, double xCoor, double yCoor,
                    double size1, double size2, double colorR, double colorG, double colorB) {
-    if (!isValidRGB(colorR, colorG, colorB)) {
+    if (isValidRGB(colorR, colorG, colorB)) {
       throw new IllegalArgumentException("Invalid RGB value.");
     }
     if (Name == null || Name.isEmpty()) {
@@ -122,12 +122,21 @@ public class Rectangle implements IShape {
 
   @Override
   public boolean isValidRGB(double r, double g, double b) {
-    return (r >= MIN && r <= MAX) && (g >= MIN && g <= MAX) && (b >= MIN && b <= MAX);
+    return (!(r >= MIN) || !(r <= MAX)) || (!(g >= MIN) || !(g <= MAX)) || (!(b >= MIN) || !(b <= MAX));
   }
 
   @Override
   public String getType() {
     return "rectangle";
+  }
+
+  @Override
+  public Rectangle copy() {
+    try {
+      return (Rectangle) super.clone();
+    } catch (CloneNotSupportedException e) {
+      throw new AssertionError("Clone fail");
+    }
   }
 
   /**
