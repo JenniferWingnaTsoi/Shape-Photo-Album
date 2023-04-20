@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 import Model.IShapeModel;
@@ -33,6 +34,7 @@ public class Web implements IWebView{
   private final int height;
   private final List<Snapshot> snapshotList;
   private final StringBuilder result;
+  private List<String> IDList = new ArrayList<>();
 
   /**
    * Constructs a Web object with the specified shape model and dimensions.
@@ -70,6 +72,11 @@ public class Web implements IWebView{
   }
 
   @Override
+  public List<String> getIDList() {
+    return this.IDList;
+  }
+
+  @Override
   public String getResult() {
     return result.toString();
   }
@@ -83,7 +90,9 @@ public class Web implements IWebView{
     // Get all the instance variables of each snapshot from the list
     String description = snapshot.getDescription();
     String ID = snapshot.getID();
+    this.IDList.add(ID);
     List<IShape> shapeList = snapshot.getShapeList();
+
 
     //Loop through all the shape to draw the shape
     for(IShape each:shapeList){

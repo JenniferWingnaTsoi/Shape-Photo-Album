@@ -1,6 +1,7 @@
 package View;
 
 import java.io.IOException;
+import java.util.List;
 
 import Model.Snapshot;
 
@@ -15,6 +16,11 @@ public interface IWebView {
    */
   void merge();
 
+  /**
+   * Returnt a list of ID of snapshot
+   * @return a list of string
+   */
+  List<String> getIDList();
 
   /**
    * Return the contents written on html file.

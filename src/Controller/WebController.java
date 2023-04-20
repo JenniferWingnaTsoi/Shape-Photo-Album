@@ -14,6 +14,14 @@ public class WebController implements IWebGraphicController {
   private Web webview;
 
   /**
+   * Return the Web object.
+   * @return Web
+   */
+  public Web getWebview() {
+    return webview;
+  }
+
+  /**
    * Constructor of WebController.
    * @param outputPath the file path of output file
    * @param model the ShapeModel to be used.

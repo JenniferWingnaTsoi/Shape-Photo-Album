@@ -2,6 +2,8 @@ package Controller;
 
 import java.io.IOException;
 
+import View.Web;
+
 /**
  * Interface for displaying visual elements for screen and web.
  */

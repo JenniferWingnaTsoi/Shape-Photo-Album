@@ -10,34 +10,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f52d6ddf-83bd-46ed-8dea-06c12c496b0a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/hw9_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UML.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo_output.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/IGraphicView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/IWebView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/WebTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/buildings_output.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/demo_output.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/test.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo.html" beforeDir="false" afterPath="$PROJECT_DIR$/buildings_output.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hw9.iml" beforeDir="false" afterPath="$PROJECT_DIR$/hw9.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/GraphicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GraphicController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/IModelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/IModelController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/IWebGraphicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/IWebGraphicController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ModelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ModelController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/WebController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/WebController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DemoMain.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/IShapeModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/IShapeModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/ShapeModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ShapeModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Snapshot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Snapshot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PhotoAlbumMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PhotoAlbumMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ReadFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ReadFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shape/IShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shape/IShape.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shape/Oval.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shape/Oval.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shape/Rectangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shape/Rectangle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/Canvas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/Canvas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/Graphic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/Graphic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/IView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/IWebView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/IWebView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/Web.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/Web.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/WebTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/WebTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,6 +86,11 @@
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jenni\Documents\23spring\5004\hw9\test" />
+      <recent name="C:\Users\jenni\Documents\23spring\5004\hw9\resources" />
+      <recent name="C:\Users\jenni\Documents\23spring\5004\hw9" />
+    </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="View" />
     </key>
@@ -109,7 +98,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.PhotoAlbum_Demo_Web">
+  <component name="RunManager">
     <configuration name="PhotoAlbum_Buildings_Graphic" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="PhotoAlbumMain" />
       <module name="hw9" />
@@ -160,7 +149,7 @@
       <workItem from="1681496883461" duration="1694000" />
       <workItem from="1681604605131" duration="683000" />
       <workItem from="1681751501758" duration="56853000" />
-      <workItem from="1681943457367" duration="14935000" />
+      <workItem from="1681943457367" duration="17332000" />
     </task>
     <servers />
   </component>
