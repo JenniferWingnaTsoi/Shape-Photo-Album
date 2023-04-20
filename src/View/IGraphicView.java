@@ -2,6 +2,9 @@ package View;
 
 import javax.swing.*;
 
+/**
+ * An interface that defines the implementation of displaying a photo album in a graphical format.
+ */
 public interface IGraphicView {
 
   /**

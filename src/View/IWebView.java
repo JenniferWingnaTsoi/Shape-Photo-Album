@@ -6,7 +6,7 @@ import java.util.List;
 import Model.Snapshot;
 
 /**
- * This is the interface of View which display the web and graphic view.
+ * This is the interface of View which display the web view.
  */
 public interface IWebView {
 
