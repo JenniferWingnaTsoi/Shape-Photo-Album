@@ -1,5 +1,9 @@
 # Shape Photo Album
--  This project aims to implement a photo album application using the Model-View-Controller (MVC) structure.
+This project aims to implement a photo album application using the Model-View-Controller (MVC) structure.
+
+## Design pattern
+Model-View-Controller (MVC): The project follows the MVC architectural pattern, which helps in organizing the code into separate components responsible for data management, user interface, and control flow.
+
 ## Function and Usage
   - Add shapes
   - Edit location of shapes by changing coordinates
@@ -52,19 +56,37 @@
   <img width="459" alt="image" src="https://github.com/JenniferWingnaTsoi/Shape-Photo-Album/assets/139680820/44bfa9ec-23c7-4f3f-8aca-731d6141fc03">
 </div>
 
-## Framework
-- Front-end: React, Next.js, TailwindCSS
-- Back-end: Prisma, Next.js
-- Database: MongoDB
-- Hosting: Vercel
-  
-## Project structure
-<div align="center">
-  
-|components| libs | hooks| pages |
-|----------|----------|----------|----------|
-| <img width="110" alt="image" src="https://github.com/JenniferWingnaTsoi/Netflix-Clone-Project-full-stack/assets/139680820/ed5473ef-ae11-451f-a951-8a4a98b7e32c">| <img width="93" alt="image" src="https://github.com/JenniferWingnaTsoi/Netflix-Clone-Project-full-stack/assets/139680820/4a535694-234b-498f-96ab-5037bdc9e6c5">|<img width="107" alt="image" src="https://github.com/JenniferWingnaTsoi/Netflix-Clone-Project-full-stack/assets/139680820/919ad437-d27a-4f40-9c9b-233a9761499b">| <img width="141" alt="image" src="https://github.com/JenniferWingnaTsoi/Netflix-Clone-Project-full-stack/assets/139680820/0bd55dd8-f1d4-4f8f-a190-2cae0c9f068a">|
+## Design components
+### Model:
+- IShapeModel (IShape Model Interface): Defines methods for managing album data.
+- ShapeModel (Shape Model): Implements the IShapeModel interface and manages shape data and operations.
+- Snapshot: Represents snapshots of the album's state, including shapes and descriptions.
+### Shape:
+- IShape (IShape Interface): Defines methods for creating shapes of different types.
+- Oval: Implements the IShape interface and represents oval shapes.
+- Rectangle: Implements the IShape interface and represents rectangle shapes.
+### Controller:
+- IModelController (Model Controller Interface): Defines methods for controlling the ShapeModel.
+- ModelController (Model Controller): Controller for the Model class and its implementation.
+- IWebGraphicController (Web and Graphic View Controller Interface): Used for displaying visual elements for the screen and web.
+- GraphicController (Graphic View Controller): Controller for the graphic view class, Graphic, and its implementation.
+- WebController (Web View Controller): Controller for the web view class, Web, and its implementation.
+### View:
+- IWebView (Web View Interface): Used for displaying the web view.
+- Web (Web View Class): Responsible for displaying snapshots of shapes and their descriptions in a web interface.
+- IGraphicView (Graphic View Interface): Defines implementations for displaying an album in graphical format.
+- Graphic (Graphic Class): Responsible for displaying snapshots of shapes and their descriptions in a graphical interface.
+- Canvas: Represents a canvas that draws and displays a list of shapes.
+- Command-Line Argument Parsing: Command-line arguments are used to specify input, output, view types, and canvas dimensions.
 
-</div>
+#### File Reading and Writing: 
+- Java's file reading and writing capabilities, such as BufferedWriter and FileReader, are used to read input files and generate output files.
+
+#### Exception Handling: 
+- Exception handling mechanisms are used to capture and handle potential error scenarios, such as file reading errors and command parsing errors.
+
+#### GUI Components: 
+- The project includes graphical user interface (GUI) components, such as buttons and canvases in the graphic view, for user interaction.
+ 
 
 
